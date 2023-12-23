@@ -3,11 +3,11 @@ import Script from "next/script";
 import "./globals.css";
 
 export const metadata = {
-	title: "柴題產生器",
+	title: "柴題遊戲",
 	description: "本柴給你無限想像",
 	openGraph: {
 		metadataBase: new URL(process.env.WEB_BASE_PATH),
-		title: "柴題產生器",
+		title: "柴題遊戲",
 		description: "本柴給你無限想像",
 		images: [{ url: "/og-logo.png", width: 800, height: 800 }],
 	},
@@ -31,7 +31,7 @@ export default function RootLayout({ children }) {
 							height={100}
 						/>
 						<h1 className="text-5xl font-bold text-yellow-800 tracking-widest">
-							柴題產生器
+							柴題遊戲
 						</h1>
 					</div>
 
