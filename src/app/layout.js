@@ -7,7 +7,7 @@ export const metadata = {
 	openGraph: {
 		title: "柴題產生器",
 		description: "本柴給你無限的靈感",
-		images: "/logo.svg",
+		images: "/og-logo.png",
 	},
 };
 
