@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Script from "next/script";
 import "./globals.css";
 
 export const metadata = {
@@ -35,6 +36,16 @@ export default function RootLayout({ children }) {
 
 					{children}
 				</main>
+				<script
+					async
+					src="https://www.googletagmanager.com/gtag/js?id=G-5BP0T7XE29"
+				></script>
+				<Script>
+					{`window.dataLayer = window.dataLayer || [];
+					  function gtag(){dataLayer.push(arguments);}
+					  gtag('js', new Date());
+  					  gtag('config', 'G-5BP0T7XE29');`}
+				</Script>
 			</body>
 		</html>
 	);
