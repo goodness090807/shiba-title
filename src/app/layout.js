@@ -4,6 +4,11 @@ import "./globals.css";
 export const metadata = {
 	title: "柴題產生器",
 	description: "本柴給你無限的靈感",
+	openGraph: {
+		title: "柴題產生器",
+		description: "本柴給你無限的靈感",
+		images: "/logo.svg",
+	},
 };
 
 export default function RootLayout({ children }) {
