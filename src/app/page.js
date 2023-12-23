@@ -7,7 +7,7 @@ export default function Home() {
 	return (
 		<div className="flex flex-col gap-4 pt-1">
 			<h2 className="font-bold text-yellow-600 text-lg">
-				本柴給你無限的靈感
+				本柴給你無限想像
 			</h2>
 			<LinkButton href={"/start"}>遊戲開始</LinkButton>
 			<FunctionButton
