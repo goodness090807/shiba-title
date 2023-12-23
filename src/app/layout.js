@@ -6,9 +6,10 @@ export const metadata = {
 	title: "柴題產生器",
 	description: "本柴給你無限想像",
 	openGraph: {
+		metadataBase: new URL(process.env.WEB_BASE_PATH),
 		title: "柴題產生器",
 		description: "本柴給你無限想像",
-		images: [{ url: process.env.OG_LOGO_PATH, width: 800, height: 800 }],
+		images: [{ url: "/og-logo.png", width: 800, height: 800 }],
 	},
 };
 
@@ -36,11 +37,11 @@ export default function RootLayout({ children }) {
 
 					{children}
 				</main>
-				<script
+				<Script
 					async
 					src="https://www.googletagmanager.com/gtag/js?id=G-5BP0T7XE29"
-				></script>
-				<Script>
+				></Script>
+				<Script id="google-analytics">
 					{`window.dataLayer = window.dataLayer || [];
 					  function gtag(){dataLayer.push(arguments);}
 					  gtag('js', new Date());
