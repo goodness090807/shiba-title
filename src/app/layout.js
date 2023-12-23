@@ -3,10 +3,10 @@ import "./globals.css";
 
 export const metadata = {
 	title: "柴題產生器",
-	description: "本柴給你無限的靈感",
+	description: "本柴給你無限想像",
 	openGraph: {
 		title: "柴題產生器",
-		description: "本柴給你無限的靈感",
+		description: "本柴給你無限想像",
 		images: [{ url: process.env.OG_LOGO_PATH, width: 800, height: 800 }],
 	},
 };
