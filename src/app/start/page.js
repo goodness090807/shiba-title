@@ -84,9 +84,6 @@ export default function StartPage() {
 					className="absolute flex items-center justify-center h-80 w-60 px-1 rounded-xl cursor-pointer
 				border-4 border-[#a7844c] bg-[#fffeef] shadow-[11px_10px_5px_0px_#A09B95]"
 				>
-					<span className="absolute flex items-center justify-center h-6 w-6">
-						<span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#8d6626] opacity-75"></span>
-					</span>
 					<Image
 						src={"/card-back.png"}
 						alt="柴犬背卡"
