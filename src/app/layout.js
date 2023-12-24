@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
 				<main className="flex h-full  flex-col items-center justify-center gap-4">
 					<div className="flex flex-col justify-center items-center">
 						<Image
-							src={"/logo.svg"}
+							src={"/logo-x-mas.png"}
 							alt="柴犬LOGO"
 							priority
 							className="w-24 h-24"
