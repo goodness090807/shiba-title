@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import classNames from "classnames";
 import Loading from "@/components/Loading";
 import { getGameQuestion } from "@/apis/db";
 import LinkButton from "@/components/LinkButton";
@@ -10,10 +9,7 @@ import FunctionButton from "@/components/FunctionButton";
 
 export default function StartPage() {
 	const ref = useRef(null);
-	const [animationHide, setAnimationHide] = useState(false);
 	const [gameQuestion, setGameQuestion] = useState(null);
-
-	const hide = classNames({ hidden: animationHide });
 
 	const setNewImage = async () => {
 		const newgameQuestion = await JSON.parse(await getGameQuestion());
@@ -35,10 +31,8 @@ export default function StartPage() {
 	const flipCardHandler = () => {
 		if (ref.current.style.transform == "rotateY(180deg)") {
 			ref.current.style.transform = "rotateY(0deg)";
-			setAnimationHide(false);
 		} else {
 			ref.current.style.transform = "rotateY(180deg)";
-			setAnimationHide(true);
 		}
 	};
 
@@ -68,7 +62,11 @@ export default function StartPage() {
 								{gameQuestion.title}
 							</h2>
 							<Image
-								className=" max-w-full px-3"
+								onLoad={() =>
+									(ref.current.style.transform =
+										"rotateY(180deg)")
+								}
+								className="max-w-full px-3"
 								src={gameQuestion.url}
 								width={240}
 								height={320}
@@ -86,9 +84,7 @@ export default function StartPage() {
 					className="absolute flex items-center justify-center h-80 w-60 px-1 rounded-xl cursor-pointer
 				border-4 border-[#a7844c] bg-[#fffeef] shadow-[11px_10px_5px_0px_#A09B95]"
 				>
-					<span
-						className={`absolute flex items-center justify-center h-6 w-6 ${hide}`}
-					>
+					<span className="absolute flex items-center justify-center h-6 w-6">
 						<span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#8d6626] opacity-75"></span>
 					</span>
 					<Image
