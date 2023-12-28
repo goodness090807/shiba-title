@@ -23,6 +23,7 @@ export default function RootLayout({ children }) {
 			<head>
 				<link rel="icon" href="/favicon.svg" />
 				<link rel="shortcut icon" href="/favicon.svg" />
+				<link rel="apple-touch-icon" href="/favicon.svg" />
 				<meta name="robots" content="index, follow" />
 				<meta name="author" content="Terry TSAI" />
 			</head>
