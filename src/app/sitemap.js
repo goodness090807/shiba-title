@@ -3,7 +3,7 @@ export default function sitemap() {
 		{
 			url: "https://tccstu.com/",
 			lastModified: new Date(),
-			changeFrequency: "yearly",
+			changeFrequency: "always",
 			priority: 1,
 		},
 	];
