@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Script from "next/script";
+import localFont from "next/font/local";
 import "./globals.css";
 
 const title = "柴題遊戲";
@@ -26,9 +27,14 @@ export const metadata = {
 	},
 };
 
+const openhuninnFont = localFont({
+	src: "../../public/fonts/jf-openhuninn-2.0.woff2",
+	display: "swap",
+});
+
 export default function RootLayout({ children }) {
 	return (
-		<html lang="zh-Hant-TW">
+		<html lang="zh-Hant-TW" className={openhuninnFont.className}>
 			<head>
 				<link rel="icon" href={image} />
 				<link rel="shortcut icon" href={image} />
