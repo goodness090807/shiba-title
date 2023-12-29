@@ -13,7 +13,15 @@ export const metadata = {
 		metadataBase: new URL(process.env.WEB_BASE_PATH),
 		title: title,
 		description: description,
-		images: [{ url: "/og-logo.png", width: 800, height: 800 }],
+		url: process.env.WEB_BASE_PATH,
+		type: "website",
+		images: [
+			{
+				url: `${process.env.WEB_BASE_PATH}/og-logo.png`,
+				width: 800,
+				height: 800,
+			},
+		],
 	},
 };
 
