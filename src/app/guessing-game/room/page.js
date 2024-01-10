@@ -130,11 +130,14 @@ export default function Room() {
 	if (canEnter && !user) {
 		return (
 			<>
-				<form onSubmit={handleClickSendMessage}>
+				<form
+					onSubmit={handleClickSendMessage}
+					className="w-4/5 flex justify-center"
+				>
 					<input
 						ref={userRef}
 						placeholder="請輸入您的名稱"
-						className=" rounded-lg py-3 px-5 text-xl"
+						className="rounded-lg py-3 px-5 text-xl"
 					/>
 				</form>
 
