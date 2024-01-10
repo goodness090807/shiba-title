@@ -7,7 +7,7 @@ import { getGameQuestion } from "@/apis/db";
 import LinkButton from "@/components/LinkButton";
 import FunctionButton from "@/components/FunctionButton";
 
-export default function StartPage() {
+export default function TitleGenerator() {
 	const ref = useRef(null);
 	const [gameQuestion, setGameQuestion] = useState(null);
 
@@ -81,8 +81,8 @@ export default function StartPage() {
 						WebkitBackfaceVisibility: "hidden",
 					}}
 					onClick={flipCardHandler}
-					className="absolute flex items-center justify-center h-80 w-60 px-1 rounded-xl cursor-pointer
-				border-4 border-[#a7844c] bg-[#fffeef] shadow-[11px_10px_5px_0px_#A09B95]"
+					className="flex items-center justify-center h-80 w-60 px-1 rounded-xl cursor-pointer
+								border-4 border-[#a7844c] bg-[#fffeef] shadow-[11px_10px_5px_0px_#A09B95]"
 				>
 					<Image
 						src={"/card-back.png"}

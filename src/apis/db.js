@@ -7,19 +7,9 @@ const database = client.db("puppy-title");
 const resources = database.collection("titles");
 
 export const getGameQuestion = async () => {
-	const count = await resources.countDocuments();
-	const ids = await resources
-		.find({})
-		.project({ _id: 1 })
-		.map((item) => item._id)
+	const docs = await resources
+		.aggregate([{ $sample: { size: 1 } }])
 		.toArray();
 
-	const randomNumber = Math.floor(Math.random() * count);
-	const randomImageId = ids[randomNumber].toString();
-
-	return JSON.stringify(
-		await resources.findOne({
-			_id: new ObjectId(randomImageId),
-		})
-	);
+	return JSON.stringify(docs[0]);
 };

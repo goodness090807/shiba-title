@@ -63,8 +63,8 @@ export default function RootLayout({ children }) {
 					></iframe>
 				</noscript>
 				{/* <!-- End Google Tag Manager (noscript) --> */}
-				<main className="flex h-full  flex-col items-center justify-center gap-4">
-					<div className="flex flex-col justify-center items-center">
+				<main className="flex min-h-full flex-col items-center justify-center gap-4">
+					<div className="flex justify-center items-center">
 						<Image
 							src={"/logo-x-mas.png"}
 							alt="柴犬LOGO"
