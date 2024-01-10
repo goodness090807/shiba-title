@@ -133,7 +133,7 @@ export default function Room() {
 				<input
 					ref={userRef}
 					placeholder="請輸入您的名稱"
-					className="rounded-lg py-3 px-5 text-xl mx-3"
+					className="rounded-lg py-3 px-5 text-xl max-w-96"
 				/>
 
 				<FunctionButton onClick={handleClickSendMessage}>
