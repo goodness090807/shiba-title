@@ -60,6 +60,11 @@ export default function Room() {
 	const handleClickSendMessage = useCallback((e) => {
 		e.preventDefault();
 
+		if (!userRef.current.value) {
+			alert("請輸入您的名稱");
+			return;
+		}
+
 		sendMessage(
 			JSON.stringify({
 				id: id,
