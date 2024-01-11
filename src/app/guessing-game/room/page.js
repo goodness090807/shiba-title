@@ -73,7 +73,7 @@ export default function Room() {
 	const handlerShareClick = async () => {
 		const shareData = {
 			title: "柴題遊戲",
-			text: "點擊加入房間",
+			text: "您的好友邀請您一起參與柴題遊戲，點擊加入我們一起玩耍吧!!!",
 			url: `/guessing-game/room?id=${id}`,
 		};
 		await navigator.share(shareData);
@@ -130,11 +130,16 @@ export default function Room() {
 	if (canEnter && !user) {
 		return (
 			<>
-				<input
-					ref={userRef}
-					placeholder="請輸入您的名稱"
-					className="rounded-lg py-3 px-5 text-xl max-w-96"
-				/>
+				<form
+					onSubmit={handleClickSendMessage}
+					className="w-4/5 flex justify-center"
+				>
+					<input
+						ref={userRef}
+						placeholder="請輸入您的名稱"
+						className="rounded-lg py-3 px-5 text-xl w-80"
+					/>
+				</form>
 
 				<FunctionButton onClick={handleClickSendMessage}>
 					進入房間
