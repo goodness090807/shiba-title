@@ -34,7 +34,10 @@ const openhuninnFont = localFont({
 
 export default function RootLayout({ children }) {
 	return (
-		<html lang="zh-Hant-TW" className={openhuninnFont.className}>
+		<html
+			lang="zh-Hant-TW"
+			className={`flex justify-center items-center ${openhuninnFont.className}`}
+		>
 			<head>
 				<link rel="icon" href={image} />
 				<link rel="shortcut icon" href={image} />
