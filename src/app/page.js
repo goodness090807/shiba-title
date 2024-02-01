@@ -43,7 +43,7 @@ export default function Home() {
 	return (
 		<div className="flex flex-col items-center gap-6">
 			<div className="flex items-center justify-center gap-4 flex-wrap">
-				<span className="font-bold text-yellow-600 text-xl">
+				<span className="font-bold text-yellow-600 text-xl mx-3">
 					點擊遊戲選單開始遊戲
 				</span>
 
