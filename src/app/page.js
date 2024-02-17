@@ -24,7 +24,7 @@ export default function Home() {
 				key={mode.title}
 				href={mode.href}
 				className="relative w-52 h-52 bg-white rounded-2xl flex justify-center shadow-[0_0_30px_-5px] shadow-yellow-800 cursor-pointer duration-500
-							hover:-translate-y-3"
+							hover:-translate-y-3 gtm-game-select-track"
 			>
 				<div className="flex flex-col items-center justify-center w-52 h-52 overflow-hidden ">
 					<Image
