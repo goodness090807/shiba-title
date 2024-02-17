@@ -2,6 +2,7 @@
 
 import FunctionButton from "@/components/FunctionButton";
 import LinkButton from "@/components/LinkButton";
+import Loading from "@/components/Loading";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
@@ -9,17 +10,34 @@ import axios from "axios";
 export default function GuessingGame() {
 	const router = useRouter();
 	const [people, setPeople] = useState(2);
+	const [loading, setLoading] = useState(false);
 
 	const createRoom = async () => {
-		const response = await axios.post(
-			`${process.env.NEXT_PUBLIC_API_PATH}/room`,
-			{
-				maxUser: people,
-			}
-		);
+		setLoading(true);
 
-		router.push(`/guessing-game/room?id=${response.data}`);
+		try {
+			const response = await axios.post(
+				`${process.env.NEXT_PUBLIC_API_PATH}/room`,
+				{
+					maxUser: people,
+				}
+			);
+			router.push(`/guessing-game/room?id=${response.data}`);
+		} catch {
+			alert("主機壞啦，請晚點再試!!!");
+		}
 	};
+
+	if (loading) {
+		return (
+			<>
+				<span className="font-bold text-yellow-600 text-xl mx-3">
+					房間產生中(主機較差，請耐心等待)...
+				</span>
+				<Loading />
+			</>
+		);
+	}
 
 	return (
 		<>

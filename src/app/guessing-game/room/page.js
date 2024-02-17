@@ -107,7 +107,14 @@ export default function Room() {
 	});
 
 	if (canEnter == null && roomInfo == null) {
-		return <Loading />;
+		return (
+			<>
+				<span className="font-bold text-yellow-600 text-xl mx-3">
+					讀取中...
+				</span>
+				<Loading />
+			</>
+		);
 	}
 
 	if (canEnter == false) {
