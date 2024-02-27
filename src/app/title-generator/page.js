@@ -37,7 +37,14 @@ export default function TitleGenerator() {
 	};
 
 	if (gameQuestion == null) {
-		return <Loading />;
+		return (
+			<>
+				<span className="font-bold text-yellow-600 text-xl">
+					天靈靈，地靈靈，遊戲題目快顯靈!!!
+				</span>
+				<Loading />
+			</>
+		);
 	}
 
 	return (
