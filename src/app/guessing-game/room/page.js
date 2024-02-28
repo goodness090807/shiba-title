@@ -9,6 +9,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import useWebSocket from "react-use-websocket";
 import { MdIosShare, MdOutlineKeyboardReturn } from "react-icons/md";
 import Loading from "@/components/Loading";
+import GameTitle from "@/components/GameTitle";
 
 export default function Room() {
 	const router = useRouter();
@@ -109,6 +110,7 @@ export default function Room() {
 	if (canEnter == null && roomInfo == null) {
 		return (
 			<>
+				<GameTitle title={"猜題遊戲"} />
 				<span className="font-bold text-yellow-600 text-xl mx-3">
 					讀取中...
 				</span>
@@ -142,6 +144,7 @@ export default function Room() {
 	if (canEnter && !user) {
 		return (
 			<>
+				<GameTitle title={"猜題遊戲"} />
 				<form
 					onSubmit={handleClickSendMessage}
 					className="w-4/5 flex justify-center"
@@ -164,6 +167,7 @@ export default function Room() {
 
 	return (
 		<>
+			<GameTitle title={"猜題遊戲"} />
 			<span className="font-bold text-yellow-600 text-xl">
 				分享連結給朋友一起遊玩吧
 			</span>
