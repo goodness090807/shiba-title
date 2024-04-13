@@ -34,6 +34,8 @@ export default function Home() {
 						className="w-40 h-40"
 						width={192}
 						height={192}
+						loading="eager"
+						priority
 					/>
 					<span className="font-bold text-xl">{mode.title}</span>
 				</div>
