@@ -96,6 +96,8 @@ export default function TitleGenerator() {
 								alt="柴犬背卡"
 								height={320}
 								width={240}
+								priority
+								loading="eager"
 							/>
 						</div>
 					</div>
