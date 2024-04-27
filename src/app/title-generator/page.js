@@ -11,6 +11,7 @@ import GameTitle from "@/components/GameTitle";
 export default function TitleGenerator() {
 	const ref = useRef(null);
 	const [gameQuestion, setGameQuestion] = useState(null);
+	const [backCardLoaded, setBackCardLoaded] = useState(false);
 
 	const setNewImage = async () => {
 		const newgameQuestion = await JSON.parse(await getGameQuestion());
@@ -40,7 +41,7 @@ export default function TitleGenerator() {
 	return (
 		<>
 			<GameTitle title={"題目產生器"} />
-			{gameQuestion == null ? (
+			{gameQuestion == null && !backCardLoaded ? (
 				<>
 					<span className="font-bold text-yellow-600 text-xl">
 						天靈靈，地靈靈，遊戲題目快顯靈!!!
@@ -93,11 +94,11 @@ export default function TitleGenerator() {
 						>
 							<Image
 								src={"/card-back.png"}
+								onLoad={() => setBackCardLoaded(true)}
 								alt="柴犬背卡"
 								height={320}
 								width={240}
 								priority
-								loading="eager"
 							/>
 						</div>
 					</div>
