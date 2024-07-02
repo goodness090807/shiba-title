@@ -27,12 +27,9 @@ export default function Home() {
                 id={mode.id}
                 key={mode.title}
                 href={mode.href}
-                onClick={(e) => {
-                    e.stopPropagation();
-                }}
                 className="relative w-52 h-52 bg-white rounded-2xl flex justify-center shadow-[0_0_30px_-5px] shadow-yellow-800 cursor-pointer duration-500
-							hover:-translate-y-3 gtm-game-select-track">
-                <div className="flex flex-col items-center justify-center w-52 h-52 overflow-hidden ">
+							hover:-translate-y-3 inset-0 z-10">
+                <div className="flex flex-col items-center justify-center w-52 h-52 overflow-hidden pointer-events-none">
                     <Image
                         src={mode.src}
                         alt={mode.title}
