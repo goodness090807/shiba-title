@@ -1,5 +1,5 @@
-import Script from "next/script";
 import localFont from "next/font/local";
+import { GoogleTagManager } from "@next/third-parties/google";
 import "./globals.css";
 
 const title = "柴題遊戲";
@@ -40,35 +40,11 @@ export default function RootLayout({ children }) {
                 <link rel="apple-touch-icon" href={image} />
                 <meta name="robots" content="index, follow" />
                 <meta name="author" content="Terry TSAI" />
-                <meta name="google-adsense-account" content="ca-pub-5523297186661757" />
             </head>
 
-            {/* Google Tag Manager */}
-            <Script id="google-tag-manager">
-                {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-					new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-					j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-					'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-					})(window,document,'script','dataLayer','GTM-NK9KP6BR');`}
-            </Script>
-            {/* End Google Tag Manager */}
-            <Script
-                id="google-syndication"
-                crossOrigin="anonymous"
-                async
-                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5523297186661757"
-            ></Script>
+            <GoogleTagManager gtmId="GTM-NK9KP6BR" />
+
             <body>
-                {/* <!-- Google Tag Manager (noscript) --> */}
-                <noscript>
-                    <iframe
-                        src="https://www.googletagmanager.com/ns.html?id=GTM-NK9KP6BR"
-                        height="0"
-                        width="0"
-                        style={{ display: "none", visibility: "hidden" }}
-                    ></iframe>
-                </noscript>
-                {/* <!-- End Google Tag Manager (noscript) --> */}
                 <main className="flex min-h-full flex-col items-center justify-center gap-4">{children}</main>
             </body>
         </html>
