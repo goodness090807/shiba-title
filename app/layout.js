@@ -27,7 +27,7 @@ export const metadata = {
 };
 
 const openhuninnFont = localFont({
-    src: "../../public/fonts/jf-openhuninn-2.0.woff2",
+    src: "../public/fonts/jf-openhuninn-2.0.woff2",
     display: "swap",
 });
 
