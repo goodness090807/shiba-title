@@ -3,22 +3,41 @@
 @tailwind utilities;
 
 :root {
-	--background-start-rgb: 253, 203, 123;
-	--background-end-rgb: 255, 255, 255;
-}
-html,
-body,
-#__next {
-	padding: 0;
-	margin: 0;
-	min-height: 100%;
+    --primary: 35, 98%, 74%;
+    --primary-text: 41, 100%, 28%;
+    --primary-text-hover: 41, 100%, 35%;
+
+    --secondary: 41, 100%, 42%;
+    --secondary-text: 35, 46%, 56%;
+
+    --emphasize: 24, 100%, 41%;
+    --emphasize-dark: 41, 100%, 28%;
+
+    --background-dark: 35, 98%, 74%;
+    --background-light: 37, 83%, 94%;
 }
 
-body {
-	background: linear-gradient(
-			to bottom,
-			transparent,
-			rgb(var(--background-end-rgb))
-		)
-		rgb(var(--background-start-rgb));
+@layer base {
+    .preserve-3d {
+        transform-style: preserve-3d;
+    }
+
+    .backface-hidden {
+        backface-visibility: hidden;
+    }
+}
+
+@layer utilities {
+    .wrapper {
+        @apply max-w-4xl lg:mx-auto p-5 md:px-10 xl:px-0 w-full;
+    }
+    .flex-center {
+        @apply flex justify-center items-center;
+    }
+    .flex-between {
+        @apply flex justify-between items-center;
+    }
+    .text-balance {
+        text-wrap: balance;
+    }
 }
