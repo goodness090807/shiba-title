@@ -9,7 +9,6 @@ import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 import useWebSocket from "react-use-websocket";
 import { MdIosShare, MdOutlineKeyboardReturn } from "react-icons/md";
 import Loading from "@/components/Loading";
-import GameTitle from "@/components/GameTitle";
 
 export default function Room() {
     const MainPage = () => {
@@ -20,21 +19,6 @@ export default function Room() {
         const [roomInfo, setRoomInfo] = useState(null);
         const [canEnter, setCanEnter] = useState(null);
         const userRef = useRef("");
-
-        const getRoomInfo = async () => {
-            try {
-                const response = await axios.get(`${process.env.NEXT_PUBLIC_API_PATH}/room/${id}`);
-
-                setCanEnter(true);
-                setRoomInfo(response.data);
-            } catch (error) {
-                if (error.response) {
-                    if (error.response.status == 404 || error.response.status == 400) {
-                        setCanEnter(false);
-                    }
-                }
-            }
-        };
 
         const { sendMessage, lastMessage } = useWebSocket(`${process.env.NEXT_PUBLIC_WEB_SOCKET_PATH}/ws`, {
             shouldReconnect: (_) => true,
@@ -48,26 +32,43 @@ export default function Room() {
         }, [lastMessage]);
 
         useEffect(() => {
+            const getRoomInfo = async () => {
+                try {
+                    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_PATH}/room/${id}`);
+
+                    setCanEnter(true);
+                    setRoomInfo(response.data);
+                } catch (error) {
+                    if (error.response) {
+                        if (error.response.status == 404 || error.response.status == 400) {
+                            setCanEnter(false);
+                        }
+                    }
+                }
+            };
             getRoomInfo();
-        }, []);
+        }, [id]);
 
-        const handleClickSendMessage = useCallback((e) => {
-            e.preventDefault();
+        const handleClickSendMessage = useCallback(
+            (e) => {
+                e.preventDefault();
 
-            if (!userRef.current.value) {
-                alert("請輸入您的名稱");
-                return;
-            }
+                if (!userRef.current.value) {
+                    alert("請輸入您的名稱");
+                    return;
+                }
 
-            sendMessage(
-                JSON.stringify({
-                    id: id,
-                    userName: userRef.current.value,
-                })
-            );
+                sendMessage(
+                    JSON.stringify({
+                        id: id,
+                        userName: userRef.current.value,
+                    })
+                );
 
-            setUser(userRef.current.value);
-        }, []);
+                setUser(userRef.current.value);
+            },
+            [id]
+        );
 
         const handlerShareClick = async () => {
             const shareData = {
@@ -92,50 +93,47 @@ export default function Room() {
 
         if (canEnter == null && roomInfo == null) {
             return (
-                <>
-                    <GameTitle title={"猜題遊戲"} />
-                    <span className="font-bold text-yellow-600 text-xl mx-3">讀取中...</span>
+                <main className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
+                    <span className="font-bold text-yellow-600 text-xl mx-3">讀取中</span>
                     <Loading />
-                </>
+                </main>
             );
         }
 
-        if (canEnter == false) {
+        if (!canEnter) {
             return (
-                <>
-                    <span className="text-xl text-yellow-600 font-bold">找不到房間!!!</span>
+                <main className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center flex flex-col gap-3">
+                    <span className="font-bold text-yellow-600 text-xl mx-3">找不到房間!!!</span>
                     <LinkButton href="/">返回</LinkButton>
-                </>
+                </main>
             );
         }
 
         if (canEnter && roomInfo.currentUser > roomInfo.maxUser) {
             return (
-                <>
+                <main className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center flex flex-col gap-3">
                     <span className="text-xl text-yellow-600 font-bold">人數已滿!!!</span>
                     <LinkButton href="/">返回</LinkButton>
-                </>
+                </main>
             );
         }
 
         if (canEnter && !user) {
             return (
-                <>
-                    <GameTitle title={"猜題遊戲"} />
+                <main className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-5">
                     <form onSubmit={handleClickSendMessage} className="w-4/5 flex justify-center">
                         <input ref={userRef} placeholder="請輸入您的名稱" className="rounded-lg py-3 px-5 text-xl w-80" />
                     </form>
 
                     <FunctionButton onClick={handleClickSendMessage}>進入房間</FunctionButton>
 
-                    <LinkButton href="/">返回</LinkButton>
-                </>
+                    <LinkButton href="/guessing-game/start">返回</LinkButton>
+                </main>
             );
         }
 
         return (
-            <>
-                <GameTitle title={"猜題遊戲"} />
+            <main className="w-full flex flex-col items-center gap-5 mb-5">
                 <span className="font-bold text-yellow-600 text-xl">分享連結給朋友一起遊玩吧</span>
                 <div className="flex items-center justify-center gap-2">
                     <span className="font-bold text-yellow-800 text-md w-52 text-center">
@@ -165,7 +163,7 @@ export default function Room() {
                     </li>
                     {cards}
                 </ul>
-            </>
+            </main>
         );
     };
 

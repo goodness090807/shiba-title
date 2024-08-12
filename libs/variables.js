@@ -6,6 +6,10 @@ export const navigationItems = [
         href: "/",
     },
     {
+        name: "連線互動",
+        href: "/guessing-game/start",
+    },
+    {
         name: "說明",
         href: "/illustrate",
     },
