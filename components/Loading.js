@@ -1,4 +1,4 @@
-export default function Home({ title }) {
+export default function Loading({ title }) {
     return (
         <div className="text-center">
             {title && <span className="font-bold text-yellow-600 text-xl">{title}</span>}

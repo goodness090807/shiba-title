@@ -20,7 +20,7 @@ export default function GuessingGame() {
             const response = await axios.post(`${process.env.NEXT_PUBLIC_API_PATH}/room`, {
                 maxUser: people,
             });
-            router.push(`/guessing-game/room?id=${response.data}`);
+            router.push(`/guessing-game/room/${response.data}`);
         } catch {
             alert("主機壞啦，請晚點再試!!!");
         }
