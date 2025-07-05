@@ -1,26 +1,26 @@
 @import "tailwindcss";
 
 @theme {
-    --color-primary: hsl(35, 98%, 74%);
-    --color-primary-text: hsl(14, 26%, 29%);
-    --color-primary-text-hover: hsl(41, 100%, 35%);
+  --color-primary: hsl(35, 98%, 74%);
+  --color-primary-text: hsl(14, 26%, 29%);
+  --color-primary-text-hover: hsl(41, 100%, 35%);
 
-    --color-secondary: hsl(41, 100%, 42%);
-    --color-secondary-text: hsl(35, 46%, 56%);
+  --color-secondary: hsl(41, 100%, 42%);
+  --color-secondary-text: hsl(35, 46%, 56%);
 
-    --color-emphasize: hsl(21, 100%, 60%);
-    --color-emphasize-dark: hsl(41, 100%, 28%);
+  --color-emphasize: hsl(21, 100%, 60%);
+  --color-emphasize-dark: hsl(41, 100%, 28%);
 
-    --color-background-dark: hsl(35, 98%, 74%);
-    --color-background-light: hsl(37, 83%, 94%);
+  --color-background-dark: hsl(35, 98%, 74%);
+  --color-background-light: hsl(37, 83%, 94%);
 }
 
 @layer base {
-    .preserve-3d {
-        transform-style: preserve-3d;
-    }
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
 
-    .backface-hidden {
-        backface-visibility: hidden;
-    }
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
 }
