@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-const SwingingItem = ({ children }) => {
+const SwingingItem = ({ children }: Readonly<{ children: React.ReactNode }>) => {
     return (
         <motion.div
             animate={{

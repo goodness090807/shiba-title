@@ -1,20 +1,18 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-:root {
-    --primary: 35, 98%, 74%;
-    --primary-text: 41, 100%, 28%;
-    --primary-text-hover: 41, 100%, 35%;
+@theme {
+    --color-primary: hsl(35, 98%, 74%);
+    --color-primary-text: hsl(14, 26%, 29%);
+    --color-primary-text-hover: hsl(41, 100%, 35%);
 
-    --secondary: 41, 100%, 42%;
-    --secondary-text: 35, 46%, 56%;
+    --color-secondary: hsl(41, 100%, 42%);
+    --color-secondary-text: hsl(35, 46%, 56%);
 
-    --emphasize: 24, 100%, 41%;
-    --emphasize-dark: 41, 100%, 28%;
+    --color-emphasize: hsl(21, 100%, 60%);
+    --color-emphasize-dark: hsl(41, 100%, 28%);
 
-    --background-dark: 35, 98%, 74%;
-    --background-light: 37, 83%, 94%;
+    --color-background-dark: hsl(35, 98%, 74%);
+    --color-background-light: hsl(37, 83%, 94%);
 }
 
 @layer base {
@@ -24,20 +22,5 @@
 
     .backface-hidden {
         backface-visibility: hidden;
-    }
-}
-
-@layer utilities {
-    .wrapper {
-        @apply max-w-4xl lg:mx-auto p-5 md:px-10 xl:px-0 w-full;
-    }
-    .flex-center {
-        @apply flex justify-center items-center;
-    }
-    .flex-between {
-        @apply flex justify-between items-center;
-    }
-    .text-balance {
-        text-wrap: balance;
     }
 }

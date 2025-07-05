@@ -1,11 +1,11 @@
 "use client";
 
-import Loading from "@/components/Loading";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import axios from "axios";
 import CircleButton from "@/components/CircleButton";
+import Loading from "@/components/Loading";
+import axios from "axios";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { FaHome, FaPlay } from "react-icons/fa";
 
 export default function GuessingGame() {
@@ -36,7 +36,7 @@ export default function GuessingGame() {
     }
 
     return (
-        <main className="w-full flex flex-col items-center gap-5 mb-5">
+        <main className="w-full flex flex-col items-center gap-5 mt-20">
             <div className="flex flex-col justify-center items-center w-[350px] md:w-[450px] bg-white/30 shadow-2xl rounded-2xl p-5">
                 <span className="font-bold text-yellow-600 text-xl">遊玩人數</span>
                 <div className="flex flex-wrap gap-2">
@@ -47,7 +47,7 @@ export default function GuessingGame() {
                         min={2}
                         max={20}
                         value={people}
-                        onChange={(e) => setPeople(e.target.value)}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPeople(Number(e.target.value))}
                     />
                     <span className="text-yellow-800 font-bold text-2xl text-center">{people}</span>
                 </div>

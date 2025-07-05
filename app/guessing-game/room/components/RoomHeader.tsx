@@ -1,7 +1,15 @@
 import { useRouter } from "next/navigation";
 import { MdIosShare, MdOutlineKeyboardReturn } from "react-icons/md";
 
-const RoomHeader = ({ room }) => {
+interface IRoomHeaderProps {
+    room: {
+        id: string;
+        currentUser: number;
+        maxUser: number;
+    };
+}
+
+const RoomHeader = ({ room }: IRoomHeaderProps) => {
     const router = useRouter();
 
     const handlerShareClick = async () => {

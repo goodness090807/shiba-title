@@ -1,4 +1,4 @@
-export default function Loading({ title }) {
+export default function Loading({ title }: Readonly<{ title?: string }>) {
     return (
         <div className="text-center">
             {title && <span className="font-bold text-yellow-600 text-xl">{title}</span>}

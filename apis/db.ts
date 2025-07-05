@@ -2,7 +2,11 @@
 
 import { MongoClient } from "mongodb";
 
-const client = new MongoClient(process.env.MONGODB_CONNECTION);
+const mongoConnection = process.env.MONGODB_CONNECTION;
+if (!mongoConnection) {
+    throw new Error("MONGODB_CONNECTION environment variable is not set");
+}
+const client = new MongoClient(mongoConnection);
 const database = client.db("puppy-title");
 const resources = database.collection("titles");
 

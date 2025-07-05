@@ -3,10 +3,25 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export const useRoomInfo = (id) => {
+export interface RoomInfo {
+    id: string;
+    isFull: boolean;
+    maxUser: number;
+    currentUser: number;
+    withoutSelfUsers: IUser[];
+}
+
+export interface IUser {
+    socketId: string;
+    userName: string;
+    questionUrl: string;
+    questionTitle: string;
+}
+
+export const useRoomInfo = (id: string) => {
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const [roomInfo, setRoomInfo] = useState(null);
+    const [error, setError] = useState<string | null>(null);
+    const [roomInfo, setRoomInfo] = useState<RoomInfo | null>(null);
 
     useEffect(() => {
         const getRoomInfo = async () => {
@@ -18,8 +33,8 @@ export const useRoomInfo = (id) => {
                 } else {
                     setRoomInfo(response.data);
                 }
-            } catch (error) {
-                if (error.response) {
+            } catch (error: unknown) {
+                if (axios.isAxiosError(error) && error.response) {
                     if (error.response.status == 404) {
                         setError("找不到房間");
                     } else {

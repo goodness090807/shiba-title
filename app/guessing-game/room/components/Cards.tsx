@@ -1,9 +1,9 @@
 "use client";
 
+import { IUser } from "@/hooks/guessing-game-hooks";
 import Image from "next/image";
-import PropTypes from "prop-types";
 
-const Cards = ({ withoutSelfUsers }) => {
+const Cards = ({ withoutSelfUsers }: { withoutSelfUsers: IUser[] }) => {
     const cards = withoutSelfUsers.map((user) => {
         return (
             <li key={user.socketId} className="flex flex-col gap-3">
@@ -27,10 +27,6 @@ const Cards = ({ withoutSelfUsers }) => {
             {cards}
         </ul>
     );
-};
-
-Cards.propTypes = {
-    withoutSelfUsers: PropTypes.array,
 };
 
 export default Cards;

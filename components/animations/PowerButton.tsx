@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-const PowerButton = ({ children }) => {
+const PowerButton = ({ children }: Readonly<{ children: React.ReactNode }>) => {
     return (
         <div className="container mx-auto px-4 my-6 text-center">
             <motion.button

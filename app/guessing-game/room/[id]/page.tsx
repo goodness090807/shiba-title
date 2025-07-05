@@ -2,50 +2,29 @@
 
 import FunctionButton from "@/components/FunctionButton";
 import LinkButton from "@/components/LinkButton";
-import useWebSocket from "react-use-websocket";
-import { MdIosShare, MdOutlineKeyboardReturn } from "react-icons/md";
-import Loading from "@/components/Loading";
 import { useRoomInfo } from "@/hooks/guessing-game-hooks";
-import PropTypes from "prop-types";
-import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
+import { use, useEffect, useRef, useState } from "react";
+import useWebSocket from "react-use-websocket";
 import Cards from "../components/Cards";
-import RoomLoading from "../components/RoomLoading";
 import RoomHeader from "../components/RoomHeader";
+import RoomLoading from "../components/RoomLoading";
 
-Room.propTypes = {
-    params: PropTypes.object,
-};
+export default function Room({
+    params,
+}: Readonly<{
+    params: Promise<{ id: string }>;
+}>) {
+    const { id } = use(params);
 
-export default function Room({ params }) {
-    const { loading, roomInfo, error } = useRoomInfo(params.id);
+    const { loading, roomInfo, error } = useRoomInfo(id);
     const [room, setRoom] = useState(roomInfo);
     const [status, setStatus] = useState("waiting");
-    const [user, setUser] = useState(null);
-    const router = useRouter();
-    const userNameRef = useRef("");
+    const [user, setUser] = useState<string | null>(null);
+    const userNameRef = useRef<HTMLInputElement | null>(null);
 
     const { sendMessage, lastMessage } = useWebSocket(`${process.env.NEXT_PUBLIC_WEB_SOCKET_PATH}/ws`, {
-        shouldReconnect: (_) => true,
+        shouldReconnect: () => true,
     });
-
-    const handleClickSendMessage = (e) => {
-        e.preventDefault();
-
-        if (!userNameRef.current.value) {
-            alert("請輸入您的名稱");
-            return;
-        }
-
-        sendMessage(
-            JSON.stringify({
-                id: params.id,
-                userName: userNameRef.current.value,
-            })
-        );
-
-        setUser(userNameRef.current.value);
-    };
 
     useEffect(() => {
         if (lastMessage !== null) {
@@ -54,6 +33,26 @@ export default function Room({ params }) {
             setStatus("entered");
         }
     }, [lastMessage]);
+
+    const useSendMessage = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        if (!userNameRef.current?.value) {
+            alert("請輸入您的名稱");
+            return;
+        }
+
+        sendMessage(
+            JSON.stringify({
+                id,
+                userName: userNameRef.current.value,
+            })
+        );
+
+        if (userNameRef.current) {
+            setUser(userNameRef.current.value);
+        }
+    };
 
     if (loading) {
         return <RoomLoading>讀取中</RoomLoading>;
@@ -71,11 +70,14 @@ export default function Room({ params }) {
     if (status === "waiting" && user == null) {
         return (
             <main className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-5">
-                <form onSubmit={handleClickSendMessage} className="w-4/5 flex justify-center">
-                    <input ref={userNameRef} placeholder="請輸入您的名稱" className="rounded-lg py-3 px-5 text-xl w-80" />
+                <form onSubmit={useSendMessage} className="w-4/5 flex justify-center flex-col items-center gap-5">
+                    <input
+                        ref={userNameRef}
+                        placeholder="請輸入您的名稱"
+                        className="rounded-lg py-3 px-5 text-xl w-80 bg-white shadow"
+                    />
+                    <FunctionButton type="submit">進入房間</FunctionButton>
                 </form>
-
-                <FunctionButton onClick={handleClickSendMessage}>進入房間</FunctionButton>
 
                 <LinkButton href="/guessing-game/start">返回</LinkButton>
             </main>
