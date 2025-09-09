@@ -1,0 +1,73 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../libs/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// 遊戲題目
+model Titles {
+  id        String   @id @default(cuid())
+  /// 題目名稱，必須唯一
+  name      String @unique
+  /// 題目描述
+  description String?
+  /// 遊戲圖片 URL
+  image     String
+  /// 誰是臥底可以使用的題目
+  canBeUndercover Boolean @default(false)
+  /// 創建時間
+  createdAt DateTime @default(now())
+  /// 更新時間
+  updatedAt DateTime @updatedAt
+
+  /// 這個題目作為主要題目的相關題目記錄
+  relatedTitles RelatedTitles[] @relation("MainTitle")
+  /// 這個題目作為相關題目的記錄
+  relatedToTitles RelatedTitles[] @relation("RelatedTitle")
+}
+
+model RelatedTitles {
+  id        String   @id @default(cuid())
+  /// 主要題目 ID
+  titleId   String
+  /// 相關題目 ID
+  relatedTitleId String
+  /// 創建時間
+  createdAt DateTime @default(now())
+  /// 更新時間
+  updatedAt DateTime @updatedAt
+
+  /// 主要題目
+  title         Titles @relation("MainTitle", fields: [titleId], references: [id], onDelete: Cascade)
+  /// 相關題目
+  relatedTitle  Titles @relation("RelatedTitle", fields: [relatedTitleId], references: [id], onDelete: Cascade)
+
+  @@index([titleId])
+  @@index([relatedTitleId])
+}
+
+model Managers {
+  id        String   @id @default(cuid())
+  /// 管理員名稱
+  name      String @unique  
+  /// 電子郵件
+  email     String @unique
+  /// 密碼雜湊
+  passwordHash String
+  /// 創建時間
+  createdAt DateTime @default(now())
+  /// 更新時間
+  updatedAt DateTime @updatedAt
+  /// 最後一次登入時間
+  lastLogin DateTime?
+}

@@ -13,6 +13,16 @@
 
   --color-background-dark: hsl(35, 98%, 74%);
   --color-background-light: hsl(37, 83%, 94%);
+
+  --animate-shiba-loading: shiba-loading 0.5s steps(2) infinite alternate;
+  @keyframes shiba-loading {
+    from {
+      background-position: 0px;
+    }
+    to {
+      background-position: -600px;
+    }
+  }
 }
 
 @layer base {
