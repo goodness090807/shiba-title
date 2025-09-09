@@ -3,10 +3,10 @@
 import CircleButton from "@/components/CircleButton";
 import Loading from "@/components/Loading";
 import axios from "axios";
+import { Home, Play } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { FaHome, FaPlay } from "react-icons/fa";
 
 export default function GuessingGame() {
   const router = useRouter();
@@ -53,11 +53,11 @@ export default function GuessingGame() {
         </div>
         <div className="w-full mt-5 flex justify-center gap-10">
           <CircleButton onClick={createRoom} title="創立房間">
-            <FaPlay />
+            <Play className="text-2xl" />
           </CircleButton>
           <Link href="/" title="回首頁">
             <CircleButton>
-              <FaHome />
+              <Home className="text-2xl" />
             </CircleButton>
           </Link>
         </div>

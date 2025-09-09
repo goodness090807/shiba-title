@@ -1,5 +1,5 @@
+import { Share, Undo2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { MdIosShare, MdOutlineKeyboardReturn } from "react-icons/md";
 
 interface IRoomHeaderProps {
   room: {
@@ -33,14 +33,14 @@ const RoomHeader = ({ room }: IRoomHeaderProps) => {
           onClick={handlerShareClick}
           className="flex justify-center items-center p-3 bg-white border-2 rounded-md border-yellow-600 text-yellow-600 hover:bg-yellow-600/10 transition-all"
         >
-          <MdIosShare className="text-2xl" />
+          <Share className="text-2xl" />
         </button>
         <button
           title="返回"
           className="flex justify-center items-center p-3 bg-white border-2 rounded-md border-yellow-600 text-yellow-600 hover:bg-yellow-600/10 transition-all"
           onClick={() => router.push("/guessing-game/start", { scroll: false })}
         >
-          <MdOutlineKeyboardReturn className="text-2xl" />
+          <Undo2 className="text-2xl" />
         </button>
       </div>
     </>
