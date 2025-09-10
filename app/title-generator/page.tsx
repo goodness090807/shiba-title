@@ -1,5 +1,6 @@
 "use client";
 
+import BasicButton from "@/components/Buttons/BasicButton";
 import { useRandomOneTitle } from "@/hooks/queries/useTitles";
 import { RotateCw } from "lucide-react";
 import Image from "next/image";
@@ -24,7 +25,7 @@ export default function TitleGenerator() {
             </span>
           )}
           {!loading && data && <span className="font-bold text-secondary-text text-4xl md:text-6xl">{data.name}</span>}
-          <div className="flex justify-center px-3 h-[300px]">
+          <div className="flex justify-center px-3 py-10 h-[400px]">
             {!loading && data ? (
               <Image
                 className="max-w-full px-3 h-full object-contain"
@@ -40,13 +41,10 @@ export default function TitleGenerator() {
           </div>
         </div>
         {!loading && (
-          <button
-            className="px-4 py-2 bg-emphasize text-white rounded-md flex items-center gap-2 cursor-pointer hover:bg-emphasize-dark transition-colors duration-300"
-            onClick={() => refetch()}
-          >
+          <BasicButton onClick={() => refetch()}>
             <RotateCw className="h-6 w-6" />
             <span className="flex items-center">生成新題目</span>
-          </button>
+          </BasicButton>
         )}
       </TopicBoard>
     </div>

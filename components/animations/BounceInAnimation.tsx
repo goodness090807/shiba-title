@@ -34,12 +34,6 @@ export const BounceInAnimation = ({
         },
       },
     },
-    hover: {
-      scale: 1.05,
-    },
-    tap: {
-      scale: 0.95,
-    },
   };
 
   return (
