@@ -103,7 +103,15 @@ const useSinglePlayerSettingStore = create<SinglePlayerSettingStore>()(
       },
       toggleFirstWhiteBoard: () => set((state) => ({ firstWhiteBoard: !state.firstWhiteBoard })),
       toggleTimeLimit: () => set((state) => ({ useTimeLimit: !state.useTimeLimit })),
-      toggleOpenVoice: () => set((state) => ({ isOpenVoice: !state.isOpenVoice })),
+      toggleOpenVoice: () => {
+        const newIsOpenVoice = !useSinglePlayerSettingStore.getState().isOpenVoice;
+
+        if (newIsOpenVoice) {
+          set(() => ({ isOpenVoice: newIsOpenVoice, timeLimit: 20, useTimeLimit: true }));
+        } else {
+          set(() => ({ isOpenVoice: newIsOpenVoice }));
+        }
+      },
       toggleUnderCoverTips: () => set((state) => ({ underCoverTips: !state.underCoverTips })),
       updateUser: (id, data) =>
         set((state) => ({
