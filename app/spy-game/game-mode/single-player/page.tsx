@@ -64,18 +64,18 @@ const SinglePlayer = () => {
   }, [nextTurn]);
 
   const handleNextTurn = useCallback(() => {
-    if (streamRef.current) {
-      streamRef.current.getTracks().forEach((track) => track.stop());
-    }
-
     if (useTimeLimit) {
       setTimeout(() => {
+        if (streamRef.current) {
+          streamRef.current.getTracks().forEach((track) => track.stop());
+        }
         flip(false);
         setIsCheckIdentify(false);
       }, 1000);
 
       setTimeout(() => {
         setIsRecording(false);
+        setButtonDisabled(false);
         nextTurnRef.current();
       }, 1500);
     } else {
@@ -191,6 +191,7 @@ const SinglePlayer = () => {
         mediaRecorder.start(100);
       }
 
+      setButtonDisabled(true);
       setIsRecording(true);
       setTimeLeft(timeLimit);
     } catch (error) {
