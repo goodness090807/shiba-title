@@ -3,10 +3,10 @@
 import { api } from "@/libs/axios";
 
 const LoginPage = () => {
-  const handleSubmit = async (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const formData = new FormData(event.target as HTMLFormElement);
+    const formData = new FormData(event.target);
 
     const response = await api.post("/auth/login", {
       email: formData.get("email"),

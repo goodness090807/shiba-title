@@ -34,7 +34,7 @@ export default function Room({
     }
   }, [lastMessage]);
 
-  const useSendMessage = (e: React.FormEvent<HTMLFormElement>) => {
+  const useSendMessage = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!userNameRef.current?.value) {

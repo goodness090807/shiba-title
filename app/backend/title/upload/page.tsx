@@ -3,10 +3,10 @@
 import { api } from "@/libs/axios";
 
 const UploadTitlePage = () => {
-  const handleSubmit = async (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const formData = new FormData(event.target as HTMLFormElement);
+    const formData = new FormData(event.target);
 
     try {
       const response = await api.post("/titles", formData, {

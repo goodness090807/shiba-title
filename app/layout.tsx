@@ -1,13 +1,11 @@
 import FloatingDecoration from "@/components/animations/FloatingDecoration";
 import Footer from "@/components/shared/Footer";
-import { Toastr } from "@/components/Toast/Toast";
-import { QueryProvider } from "@/libs/query-provider";
 import { cn } from "@/libs/utils";
 import { websiteName } from "@/libs/variables";
 import { GoogleTagManager } from "@next/third-parties/google";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Metadata } from "next";
 import localFont from "next/font/local";
+import { Providers } from "./_components/Providers";
 import "./globals.css";
 
 const description =
@@ -60,12 +58,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <FloatingDecoration top="75%" left="60%" />
         <div className="min-h-full flex flex-col justify-center items-center bg-radial-[ellipse_at_top_center,#FFFFFF_0%,#FFF8F3_30%,#FFE8D6_70%,#FFDCC3_100%]">
           <main className="flex-1 flex flex-col justify-center items-center">
-            <QueryProvider>
-              {children}
-              <ReactQueryDevtools initialIsOpen={false} />
-            </QueryProvider>
-
-            <Toastr />
+            <Providers>{children}</Providers>
           </main>
           <Footer />
         </div>

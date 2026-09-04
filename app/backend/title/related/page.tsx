@@ -3,7 +3,7 @@
 import { api } from "@/libs/axios";
 
 const RelateTitle = () => {
-  const handleSubmit = async (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.target as HTMLFormElement);
     const response = await api.post("/titles/related", {
